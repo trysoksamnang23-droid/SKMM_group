@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. Candidates — SKMM INVESTMENT GROUP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <span>🇰🇭 🇯🇵</span> SKMM GROUP
+        </a>
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <nav>
+            <a href="index.html">1. Home</a>
+            <a href="about.html">2. About Us</a>
+            <a href="services.html">3. Our Services</a>
+            <a href="japanese-partner.html">4. For Japanese Partners</a>
+            <a href="candidates.html" class="active">5. Candidates</a>
+            <a href="job.html">6. Job Opportunities</a>
+            <a href="hanabi.html">7. HANABI Center</a>
+            <a href="news.html">8. News & Activities</a>
+            <a href="contact.html">9. Contact Us</a>
+            <a href="legal.html">10. Legal</a>
+        </nav>
+    </header>
+
+    <div class="container" style="flex-direction: column;">
+        
+        <!-- Candidate Search Filters -->
+        <section class="section-block">
+            <h2>Candidate Search & Database — ស្វែងរកបេក្ខជន</h2>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">
+                Browse pre-screened Cambodian candidates trained at HANABI Center ready for Specified Skilled Worker (SSW) and Technical Intern Training (TITP) interviews.
+            </p>
+            <form id="candidate-filter-form">
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label>Gender — ភេទ</label>
+                        <select id="filter-gender">
+                            <option value="all">All Genders (ទាំងអស់)</option>
+                            <option value="female">Female (ស្រី)</option>
+                            <option value="male">Male (ប្រុស)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Japanese Level — កម្រិតភាសាជប៉ុន</label>
+                        <select id="filter-level">
+                            <option value="all">All Levels (គ្រប់កម្រិត)</option>
+                            <option value="N3">JLPT N3 (Fluent Conversational)</option>
+                            <option value="N4">JLPT N4 / JFT-Basic A2</option>
+                            <option value="N5">JLPT N5 (Basic)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Job Category — ប្រភេទការងារ</label>
+                        <select id="filter-category">
+                            <option value="all">All Industries (គ្រប់វិស័យ)</option>
+                            <option value="caregiving">Caregiving (ថែទាំមនុស្សចាស់)</option>
+                            <option value="agriculture">Agriculture (កសិកម្ម)</option>
+                            <option value="food">Food Manufacturing (ផលិតចំណីអាហារ)</option>
+                            <option value="construction">Construction (សំណង់)</option>
+                            <option value="hospitality">Hotel & Hospitality (សណ្ឋាគារ)</option>
+                            <option value="livestock">Livestock Farming (ចិញ្ចឹមសត្វ)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Keyword / Skills Search</label>
+                        <input type="text" id="filter-keyword" placeholder="Search candidate ID, skill, experience (e.g. Sokha, Nursing, Welding)...">
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 1rem;">
+                        <button type="submit" class="btn" style="flex: 1; height: 42px;">Filter Candidates</button>
+                        <button type="reset" class="btn-outline" style="height: 42px;" onclick="setTimeout(() => document.getElementById('candidate-filter-form').dispatchEvent(new Event('submit')), 50)">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Candidate Profile Showcase Grid -->
+        <section class="section-block">
+            <div class="section-header">
+                <h2>Verified Candidate Profiles — បញ្ជីបេក្ខជនដែលមានលក្ខណៈសម្បត្តិគ្រប់គ្រាន់</h2>
+            </div>
+            
+            <div class="grid-3" id="candidate-list">
+            </div>
+        </section>
+
+        <section class="section-block" id="interview-request-section">
+            <h2>🎥 Request an Interview</h2>
+            <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 1rem;">
+                Request an interview with a verified candidate from HANABI Center.
+            </p>
+            <button onclick="document.getElementById('interview-form-panel').style.display = document.getElementById('interview-form-panel').style.display === 'none' ? 'block' : 'none'" class="btn" style="margin-bottom: 1rem;">➕ Request Interview</button>
+            <div id="interview-form-panel" style="display:none; margin-bottom: 1.5rem; padding: 1.25rem; background: #f8fafc; border-radius: 8px;">
+                <form onsubmit="event.preventDefault(); handleInterviewPublic(event);">
+                    <input type="hidden" id="pub-int-candidateId" value="">
+                    <div class="grid-2">
+                        <div class="form-group"><label>Candidate ID</label><input type="text" id="pub-int-candidateId" placeholder="e.g. SKMM-0821"></div>
+                        <div class="form-group"><label>Company *</label><input type="text" id="pub-int-company" required placeholder="Company name"></div>
+                        <div class="form-group"><label>Representative</label><input type="text" id="pub-int-representative" placeholder="Name"></div>
+                        <div class="form-group"><label>Tool</label><input type="text" id="pub-int-tool" placeholder="Video/Phone"></div>
+                        <div class="form-group"><label>Date & Time</label><input type="datetime-local" id="pub-int-datetime"></div>
+                        <div class="form-group"><label>Email</label><input type="email" id="pub-int-email" placeholder="Email"></div>
+                    </div>
+                    <div class="form-group"><label>Notes</label><textarea rows="2" id="pub-int-notes"></textarea></div>
+                    <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:0.5rem;">
+                        <button type="button" class="btn-outline" onclick="document.getElementById('interview-form-panel').style.display='none'">Cancel</button>
+                        <button type="submit" class="btn">Request</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SKMM INVESTMENT GROUP CO., LTD. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 4px;">
+            Licensed Private Recruitment Agency No. 048/19 MLVT • Phnom Penh, Cambodia
+        </p>
+    </footer>
+
+    <script>
+        function handleInterviewPublic(e) {
+            e.preventDefault();
+            console.log('[Candidates] handleInterviewPublic called');
+            
+            // Use window functions to ensure we get the Supabase-enabled versions
+            var getRequests = window.getInterviewRequests || getInterviewRequests;
+            var saveRequests = window.saveInterviewRequests;
+            
+            if (!saveRequests) {
+                console.error('[Candidates] saveInterviewRequests not available yet');
+                showToast('System not ready, please try again in a moment', 'error');
+                return;
+            }
+            
+            var requests = getRequests();
+            console.log('[Candidates] Current requests:', requests.length);
+            
+            var req = {
+                id: 'int-' + Date.now(),
+                candidateName: document.getElementById('pub-int-candidateId').value.trim(),
+                company: document.getElementById('pub-int-company').value.trim(),
+                representative: document.getElementById('pub-int-representative').value.trim(),
+                tool: document.getElementById('pub-int-tool').value.trim(),
+                datetime: document.getElementById('pub-int-datetime').value,
+                status: 'Pending',
+                email: document.getElementById('pub-int-email').value.trim(),
+                notes: document.getElementById('pub-int-notes').value.trim()
+            };
+            
+            if (!req.candidateName || !req.company) {
+                showToast('Please fill in Candidate ID and Company', 'error');
+                return;
+            }
+            
+            requests.push(req);
+            console.log('[Candidates] Saving request:', req.id);
+            
+            try { 
+                saveRequests(requests);
+                console.log('[Candidates] Save completed');
+            } catch(err) { 
+                console.error('[Candidates] Save error:', err);
+                showToast('Error saving: ' + err.message, 'error');
+                return;
+            }
+            
+            showToast('Interview request submitted! Admin will review.', 'success');
+            document.getElementById('interview-form-panel').style.display = 'none';
+            
+            // Also trigger a manual re-render of admin tables if on admin page
+            if (typeof renderAdminInterviewTable === 'function') {
+                renderAdminInterviewTable();
+            }
+        }
+    </script>
+
+    <script src="script.js"></script>
+    <script src="supabase-js.js"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-setup.js"></script>
+</body>
+</html>

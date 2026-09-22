@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Management Tool — SKMM INVESTMENT GROUP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Dark Navigation Header -->
+    <header>
+        <a href="index.html" class="logo">
+            <span>🇰🇭 🇯🇵</span> SKMM GROUP <span style="font-size: 0.8rem; background: #38bdf8; color: #0f172a; padding: 2px 8px; border-radius: 8px; margin-left: 8px;">ADMIN CMS</span>
+        </a>
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <nav>
+            <a href="index.html">← Back to Website</a>
+            <a href="job.html">Job Openings</a>
+            <a href="candidates.html">Candidates</a>
+            <a href="news.html">News & Activities</a>
+        </nav>
+    </header>
+
+    <!-- Admin Login Gate -->
+    <div id="admin-gate" style="display: flex; align-items: center; justify-content: center; min-height: 60vh; background: #f8fafc; margin: 1rem; border-radius: 24px;">
+        <div style="background: #ffffff; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); max-width: 420px; width: 100%; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔐</div>
+            <h2 style="color: #0f172a; margin-bottom: 0.5rem;">Admin Login</h2>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">Enter your credentials to access the admin panel.</p>
+            <form id="admin-gate-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="admin-gate-input" placeholder="SKMMadmin@soksamnang" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="admin-gate-password" placeholder="NOattackHERE@123" required>
+                </div>
+                <div id="gate-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 1rem; display: none; background: #fef2f2; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #ef4444;"></div>
+                <button type="submit" class="btn" style="width: 100%; padding: 0.75rem;">Sign In (ចូលប្រើប្រាស់)</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="admin-content" style="display: none;">
+
+        <div class="container" style="flex-direction: column;">
+
+            <!-- Admin Dashboard Welcome Banner -->
+            <section class="section-block" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 0.5rem;">Content Management & Administration Portal</h2>
+                        <p style="color: #cbd5e1; margin-bottom: 0;">
+                            Manage job openings, publish & edit news articles, and sync live website data. Changes immediately reflect across the site.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="index.html" class="btn" style="background: #38bdf8; color: #0f172a;">View Live Website</a>
+                        <button onclick="logout(); location.reload();" class="btn" style="background: #ef4444; color: #ffffff;">Logout</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Navigation Tabs -->
+            <div class="tabs" style="margin-bottom: 1rem;">
+                <button class="tab-btn admin-nav-tab active" data-target="admin-jobs-section">💼 Job Manager (គ្រប់គ្រងការងារ)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-candidates-section">👥 Candidates (បេក្ខជន)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-applications-section">📋 Applications (អំពើការងារ)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-interview-section">🎥 Interview Requests (ស្នើសម្ភាសន៍)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-partner-section">🤝 Partner Consultations (ការប្រកួតជំនួញ)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-inquiry-section">📬 Contact Inquiries (សំណួរ)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-hanabi-section">📚 HANABI (អប្រំជាតិ)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-news-section">📰 News & Article Manager (គ្រប់គ្រងព័ត៌មាន)</button>
+                <button class="tab-btn admin-nav-tab" data-target="admin-backup-section">💾 Database Backup & Sync (ទិន្នន័យ)</button>
+            </div>
+
+            <!-- ================= SECTION 1: JOB MANAGER ================= -->
+            <div id="admin-jobs-section" class="admin-section">
+
+                <!-- Job Form (Add or Edit) -->
+                <section class="section-block">
+                    <h2 id="admin-job-form-title">➕ Add New Job Opening</h2>
+                    <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 1.25rem;">
+                        Create a new job opportunity or edit an existing one. It will be added to the live database and appear on the homepage and job directory.
+                    </p>
+
+                    <form id="admin-job-form">
+                        <input type="hidden" id="admin-job-id" value="">
+
+                        <div class="grid-3">
+                            <div class="form-group">
+                                <label>Job Title (e.g. Senior Agricultural Engineer) *</label>
+                                <input type="text" id="job-title" placeholder="Enter job title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Hiring Company / Partner *</label>
+                                <input type="text" id="job-company" placeholder="e.g. Tokyo Agri Co. / HANABI" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Country Destination *</label>
+                                <select id="job-country" required>
+                                    <option value="japan">Japan (ប្រទេសជប៉ុន)</option>
+                                    <option value="cambodia">Cambodia (ប្រទេសកម្ពុជា)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid-3">
+                            <div class="form-group">
+                                <label>Work Location / City *</label>
+                                <input type="text" id="job-city" placeholder="e.g. Ibaraki / Tokyo, Japan" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Monthly Salary Display *</label>
+                                <input type="text" id="job-salary" placeholder="e.g. $1,800 - $2,400/mo" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Sector / Category *</label>
+                                <select id="job-sector" required>
+                                    <option value="agriculture">Agriculture (កសិកម្ម)</option>
+                                    <option value="caregiving">Caregiving (ថែទាំមនុស្សចាស់)</option>
+                                    <option value="food">Food Manufacturing (ផលិតចំណីអាហារ)</option>
+                                    <option value="hospitality">Hotel & Hospitality (សណ្ឋាគារ)</option>
+                                    <option value="construction">Construction & Machinery (សំណង់)</option>
+                                    <option value="livestock">Livestock Farming (ចិញ្ចឹមសត្វ)</option>
+                                    <option value="education">Education / Teaching (អប្រំ)</option>
+                                    <option value="logistics">Logistics & Warehouse (ដឹកជញ្ជូន)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid-4">
+                            <div class="form-group">
+                                <label>Working Schedule</label>
+                                <select id="job-schedule">
+                                    <option value="full time">Full time</option>
+                                    <option value="part time">Part time</option>
+                                    <option value="internship">Internship</option>
+                                    <option value="project work">Project work</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Employment Type</label>
+                                <select id="job-employment-type">
+                                    <option value="overseas">Overseas work (ក្រៅប្រទេស)</option>
+                                    <option value="full day">Full day (ពេញម៉ោង)</option>
+                                    <option value="flexible">Flexible schedule</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Card Color Theme</label>
+                                <select id="job-theme">
+                                    <option value="peach">Peach (Orange)</option>
+                                    <option value="mint">Mint (Green)</option>
+                                    <option value="lavender">Lavender (Purple)</option>
+                                    <option value="blue">Blue (Sky)</option>
+                                    <option value="pink">Pink (Rose)</option>
+                                    <option value="gray">Gray (Slate)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Status Badge Tag</label>
+                                <input type="text" id="job-status-badge" placeholder="e.g. SSW 1, Urgent, Hot">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Job Description *</label>
+                            <textarea rows="3" id="job-description" placeholder="Describe the duties, job responsibilities, and workplace environment..." required></textarea>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Requirements (1 per line)</label>
+                                <textarea rows="4" id="job-requirements" placeholder="JLPT N4 or JFT-Basic A2 certificate required&#10;Agriculture skill assessment passed&#10;Good health and high responsibility"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Benefits & Welfare (1 per line)</label>
+                                <textarea rows="4" id="job-benefits" placeholder="Dormitory subsidy (Wi-Fi & utilities)&#10;Full Japanese health and pension insurance&#10;Overtime pay at 1.25x rate"></textarea>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 1rem;">
+                            <button type="button" id="admin-job-cancel-btn" class="btn-outline" style="display: none;" onclick="resetJobForm()">Cancel Edit</button>
+                            <button type="submit" id="admin-job-submit-btn" class="btn" style="padding: 0.65rem 2rem;">Publish Job</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Jobs Directory Table -->
+                <section class="section-block">
+                    <h2>Active Job Openings Directory (បញ្ជីការងារទាំងអស់)</h2>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Job Title & Company</th>
+                                    <th>Location</th>
+                                    <th>Salary</th>
+                                    <th>Schedule</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-jobs-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= SECTION 2: APPLICATIONS ================= -->
+            <div id="admin-applications-section" class="admin-section" style="display: none;">
+
+                <section class="section-block">
+                    <h2>📋 Job Applications (អំពើការងារ)</h2>
+                    <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 1rem;">
+                        View all candidates who applied through the Online Job Application form.
+                    </p>
+                    <button onclick="toggleApplicationForm()" class="btn" style="margin-bottom: 1rem;">➕ Add Application</button>
+                    <div id="application-form-panel" style="display:none; margin-bottom: 1.5rem; padding: 1.25rem; background: #f8fafc; border-radius: 8px;">
+                        <form id="admin-application-form" onsubmit="handleApplicationSubmit(event)">
+                            <input type="hidden" id="admin-application-id" value="">
+                            <div class="grid-2">
+                                <div class="form-group"><label>Name *</label><input type="text" id="app-name" required></div>
+                                <div class="form-group"><label>Phone *</label><input type="text" id="app-phone" required></div>
+                                <div class="form-group"><label>Position Applied *</label><input type="text" id="app-position" required></div>
+                                <div class="form-group"><label>Japanese Level</label><input type="text" id="app-japaneseLevel"></div>
+                                <div class="form-group"><label>Location</label><input type="text" id="app-location"></div>
+                                <div class="form-group"><label>Date of Birth</label><input type="date" id="app-dob"></div>
+                            </div>
+                            <div class="form-group"><label>Experience</label><input type="text" id="app-experience"></div>
+                            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:0.5rem;">
+                                <button type="button" class="btn-outline" onclick="toggleApplicationForm()">Cancel</button>
+                                <button type="submit" class="btn">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Position</th>
+                                    <th>Japanese Level</th>
+                                    <th>Applied Date</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-applications-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= SECTION 2: CANDIDATES ================= -->
+            <div id="admin-candidates-section" class="admin-section" style="display: none;">
+
+                <section class="section-block">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h2 style="margin-bottom: 0;">👥 Verified Candidates (បេក្ខជនដែលមានលក្ខណៈសម្បត្តិ)</h2>
+                            <p style="color: #64748b; font-size: 0.875rem; margin-top: 0.25rem; margin-bottom: 0;">
+                                Pre-screened candidates trained at HANABI Center, ready for deployment.
+                            </p>
+                        </div>
+                        <button onclick="openAddCandidate()" class="btn">➕ Add New Candidate</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Sector</th>
+                                    <th>Status</th>
+                                    <th>Japanese</th>
+                                    <th>Age</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-candidates-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= SECTION 2.5: INTERVIEW REQUESTS ================= -->
+            <div id="admin-interview-section" class="admin-section" style="display: none;">
+
+                <section class="section-block">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h2 style="margin-bottom: 0;">🎥 Interview Requests (ស្នើសម្ភាសន៍)</h2>
+                            <p style="color: #64748b; font-size: 0.875rem; margin-top: 0.25rem; margin-bottom: 0;">
+                                Companies requesting interviews with verified candidates.
+                            </p>
+                        </div>
+                    </div>
+                    <button onclick="toggleInterviewForm()" class="btn" style="margin-bottom: 1rem;">➕ New Interview Request</button>
+                    <div id="interview-form-panel" style="display:none; margin-bottom: 1.5rem; padding: 1.25rem; background: #f8fafc; border-radius: 8px;">
+                        <form id="admin-interview-form" onsubmit="handleInterviewSubmit(event)">
+                            <input type="hidden" id="admin-interview-id" value="">
+                            <div class="grid-2">
+                                <div class="form-group"><label>Candidate ID *</label><input type="text" id="int-candidateId" required></div>
+                                <div class="form-group"><label>Company *</label><input type="text" id="int-company" required></div>
+                                <div class="form-group"><label>Representative</label><input type="text" id="int-representative"></div>
+                                <div class="form-group"><label>Tool</label><input type="text" id="int-tool"></div>
+                                <div class="form-group"><label>Date & Time</label><input type="datetime-local" id="int-datetime"></div>
+                                <div class="form-group"><label>Status</label><select id="int-status"><option value="Pending">Pending</option><option value="Approved">Approved</option><option value="Rejected">Rejected</option></select></div>
+                            </div>
+                            <div class="form-group"><label>Email</label><input type="email" id="int-email"></div>
+                            <div class="form-group"><label>Notes</label><textarea id="int-notes"></textarea></div>
+                            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:0.5rem;">
+                                <button type="button" class="btn-outline" onclick="toggleInterviewForm()">Cancel</button>
+                                <button type="submit" class="btn">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Candidate</th>
+                                    <th>Company</th>
+                                    <th>Representative</th>
+                                    <th>Tool</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-interview-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= SECTION 2.75: PARTNER CONSULTATIONS ================= -->
+            <div id="admin-partner-section" class="admin-section" style="display: none;">
+
+                <section class="section-block">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <div>
+                            <h2 style="margin-bottom: 0;">🤝 Partner Consultations (ការប្រកួតជំនួញ)</h2>
+                            <p style="color: #64748b; font-size: 0.875rem; margin-top: 0.25rem; margin-bottom: 0;">
+                                Japanese companies requesting consultation with SKMM Directors.
+                            </p>
+                        </div>
+                        <button onclick="togglePartnerForm()" class="btn">➕ New Partner</button>
+                    </div>
+                    <div id="partner-form-panel" style="display:none; margin-bottom: 1.5rem; padding: 1.25rem; background: #f8fafc; border-radius: 8px;">
+                        <form id="admin-partner-form" onsubmit="handlePartnerSubmit(event)">
+                            <input type="hidden" id="admin-partner-id" value="">
+                            <div class="grid-2">
+                                <div class="form-group"><label>Company *</label><input type="text" id="part-company" required></div>
+                                <div class="form-group"><label>Contact Name *</label><input type="text" id="part-contactName" required></div>
+                                <div class="form-group"><label>Contact Email *</label><input type="email" id="part-email" required></div>
+                                <div class="form-group"><label>Industry</label><input type="text" id="part-industry"></div>
+                                <div class="form-group"><label>Volume</label><input type="text" id="part-volume"></div>
+                                <div class="form-group"><label>Status</label><select id="part-status"><option value="Pending">Pending</option><option value="Approved">Approved</option><option value="Rejected">Rejected</option></select></div>
+                            </div>
+                            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:0.5rem;">
+                                <button type="button" class="btn-outline" onclick="togglePartnerForm()">Cancel</button>
+                                <button type="submit" class="btn">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Contact Email</th>
+                                    <th>Industry</th>
+                                    <th>Volume</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-partner-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= SECTION 2.9: CONTACT INQUIRIES ================= -->
+            <div id="admin-inquiry-section" class="admin-section" style="display: none;">
+
+                <section class="section-block">
+                    <h2>📬 Contact Inquiries (សំណួរទាក់ទង)</h2>
+                    <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 1rem;">
+                        View all contact form submissions from the Contact Us page.
+                    </p>
+                    <button onclick="toggleInquiryForm()" class="btn" style="margin-bottom: 1rem;">➕ New Inquiry</button>
+                    <div id="inquiry-form-panel" style="display:none; margin-bottom: 1.5rem; padding: 1.25rem; background: #f8fafc; border-radius: 8px;">
+                        <form id="admin-inquiry-form" onsubmit="handleInquirySubmit(event)">
+                            <input type="hidden" id="admin-inquiry-id" value="">
+                            <div class="grid-2">
+                                <div class="form-group"><label>Name *</label><input type="text" id="inq-name" required></div>
+                                <div class="form-group"><label>Email *</label><input type="email" id="inq-email" required></div>
+                                <div class="form-group"><label>Phone</label><input type="text" id="inq-phone"></div>
+                                <div class="form-group"><label>Type</label><input type="text" id="inq-type"></div>
+                            </div>
+                            <div class="form-group"><label>Message *</label><textarea rows="3" id="inq-message" required></textarea></div>
+                            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:0.5rem;">
+                                <button type="button" class="btn-outline" onclick="toggleInquiryForm()">Cancel</button>
+                                <button type="submit" class="btn">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Type</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inquiry-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= SECTION 2.85: HANABI ================= -->
+            <div id="admin-hanabi-section" class="admin-section" style="display: none;">
+
+                <div class="tabs" style="margin-bottom: 1rem;">
+                    <button class="tab-btn admin-hanabi-tab active" data-target="admin-hanabi-schedule">📚 Schedule & Courses</button>
+                    <button class="tab-btn admin-hanabi-tab" data-target="admin-hanabi-enrollment">📝 Enrollments</button>
+                </div>
+
+                <div id="admin-hanabi-schedule" class="admin-hanabi-subsection">
+                    <section class="section-block">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <div>
+                                <h2 style="margin-bottom: 0;">📚 Course Schedule & Tuition (កាលវិភាគ និងតម្លៃ)</h2>
+                                <p style="color: #64748b; font-size: 0.875rem; margin-top: 0.25rem; margin-bottom: 0;">Manage HANABI Center courses and schedules.</p>
+                            </div>
+                            <button onclick="openAddSchedule()" class="btn">➕ Add Course</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Course Name</th>
+                                        <th>Target Level</th>
+                                        <th>Duration</th>
+                                        <th>Class Schedule</th>
+                                        <th>Tuition Fee</th>
+                                        <th style="text-align: right;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-schedule-tbody">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="admin-hanabi-enrollment" class="admin-hanabi-subsection" style="display: none;">
+                    <section class="section-block">
+                        <h2>📝 Course Enrollments (ការចុះឈ្មោះ)</h2>
+                        <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 1rem;">View all students who enrolled through the HANABI enrollment form.</p>
+                        <button onclick="toggleEnrollmentForm()" class="btn" style="margin-bottom: 1rem;">➕ New Enrollment</button>
+                        <div id="enrollment-form-panel" style="display:none; margin-bottom: 1.5rem; padding: 1.25rem; background: #f8fafc; border-radius: 8px;">
+                            <form id="admin-enrollment-form" onsubmit="handleEnrollmentSubmit(event)">
+                                <input type="hidden" id="admin-enrollment-id" value="">
+                                <div class="grid-2">
+                                    <div class="form-group"><label>Name *</label><input type="text" id="enr-name" required></div>
+                                    <div class="form-group"><label>Phone *</label><input type="text" id="enr-phone" required></div>
+                                    <div class="form-group"><label>Course</label><input type="text" id="enr-course"></div>
+                                    <div class="form-group"><label>Japanese Knowledge</label><input type="text" id="enr-knowledge"></div>
+                                    <div class="form-group"><label>Dormitory</label><input type="text" id="enr-dormitory"></div>
+                                    <div class="form-group"><label>Career Goal</label><input type="text" id="enr-career"></div>
+                                </div>
+                                <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:0.5rem;">
+                                    <button type="button" class="btn-outline" onclick="toggleEnrollmentForm()">Cancel</button>
+                                    <button type="submit" class="btn">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Course</th>
+                                        <th>Date</th>
+                                        <th style="text-align: right;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-enrollment-tbody">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+
+            <!-- ================= SECTION 3: NEWS MANAGER ================= -->
+            <div id="admin-news-section" class="admin-section" style="display: none;">
+
+                <!-- News Form (Add or Edit) -->
+                <section class="section-block">
+                    <h2 id="admin-news-form-title">➕ Add / Publish News Article</h2>
+                    <p style="color: #64748b; font-size: 0.875rem; margin-bottom: 1.25rem;">
+                        Post departure announcements, interview results, company milestones, or campus activities to the News page.
+                    </p>
+
+                    <form id="admin-news-form">
+                        <input type="hidden" id="admin-news-id" value="">
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Article Title *</label>
+                                <input type="text" id="news-title" placeholder="Enter headline title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category *</label>
+                                <select id="news-category" required>
+                                    <option value="departures">Departures to Japan (ការចេញដំណើរ)</option>
+                                    <option value="interviews">Interview Results (លទ្ធផលសម្ភាសន៍)</option>
+                                    <option value="partnership">MOU & Partnerships (កិច្ចព្រមព្រៀង)</option>
+                                    <option value="campus">HANABI Campus Life (សកម្មភាពសិស្ស)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>Author / Division</label>
+                                <input type="text" id="news-author" placeholder="e.g. Editorial Staff, PR Division">
+                            </div>
+                            <div class="form-group">
+                                <label>Estimated Read Time</label>
+                                <input type="text" id="news-readtime" placeholder="e.g. 2 min read">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Article Excerpt / Summary (shown on cards) *</label>
+                            <textarea rows="2" id="news-excerpt" placeholder="Brief summary to display on the news preview card..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Full Story Content (shown in popup reader modal) *</label>
+                            <textarea rows="6" id="news-content" placeholder="Write full article details or paragraphs here..." required></textarea>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 1rem;">
+                            <button type="button" id="admin-news-cancel-btn" class="btn-outline" style="display: none;" onclick="resetNewsForm()">Cancel Edit</button>
+                            <button type="submit" id="admin-news-submit-btn" class="btn" style="padding: 0.65rem 2rem;">Publish Article</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- News Directory Table -->
+                <section class="section-block">
+                    <h2>Published News & Activities (បញ្ជីព័ត៌មានដែលបានផ្សាយ)</h2>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Article Title</th>
+                                    <th>Category</th>
+                                    <th>Date Published</th>
+                                    <th>Author</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-news-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- ================= SECTION 3: BACKUP & DATA SYNC ================= -->
+            <div id="admin-backup-section" class="admin-section" style="display: none;">
+
+                <section class="section-block">
+                    <h2>Database Backup & Synchronization</h2>
+                    <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                        Download a JSON backup of your current website database (all active jobs and published news), import data from another device, or restore default demo data.
+                    </p>
+
+                    <div class="grid-3">
+                        <!-- Export -->
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="card-icon">📥</div>
+                                <h3 style="margin-top: 0;">Export Database</h3>
+                                <p class="text-muted">Download all active jobs and news articles as a timestamped JSON file.</p>
+                            </div>
+                            <button onclick="exportDataJSON()" class="btn" style="margin-top: 1rem; width: 100%;">Export to JSON</button>
+                        </div>
+
+                        <!-- Import -->
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="card-icon">📤</div>
+                                <h3 style="margin-top: 0;">Import Database</h3>
+                                <p class="text-muted">Restore or upload a JSON backup file to overwrite current database.</p>
+                                <input type="file" id="admin-import-file" accept=".json" style="font-size: 0.8rem; margin-top: 0.5rem; width: 100%;">
+                            </div>
+                            <button onclick="importDataJSON()" class="btn-outline" style="margin-top: 1rem; width: 100%;">Import JSON</button>
+                        </div>
+
+                        <!-- Reset -->
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <div class="card-icon" style="color: #ef4444;">⚠️</div>
+                                <h3 style="margin-top: 0; color: #b91c1c;">Reset Demo Data</h3>
+                                <p class="text-muted">Restore all standard demo jobs and news articles back to original factory defaults.</p>
+                            </div>
+                            <button onclick="resetAllDataToDefault()" class="btn" style="background: #ef4444; margin-top: 1rem; width: 100%;">Reset to Defaults</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SKMM INVESTMENT GROUP CO., LTD. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 4px;">
+            Licensed Private Recruitment Agency No. 048/19 MLVT • Phnom Penh, Cambodia
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="supabase-js.js"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-setup.js"></script>
+    <script>
+        (function() {
+            checkAdminAuth();
+            var form = document.getElementById('admin-gate-form');
+            if (form) {
+                form.addEventListener('submit', handleAdminGate);
+            }
+        })();
+        var realForm = document.getElementById('admin-job-form');
+        if (realForm) {
+            realForm.addEventListener('submit', function(e) {
+                try {
+                    e.preventDefault();
+                    console.log('[SKMM Admin] Job form submit triggered');
+                    var editId = document.getElementById('admin-job-id').value;
+                    var jobs = getJobs();
+                    console.log('[SKMM Admin] Existing jobs count:', jobs.length);
+                    var title = document.getElementById('job-title').value.trim();
+                    var company = document.getElementById('job-company').value.trim();
+                    var country = document.getElementById('job-country').value;
+                    var city = document.getElementById('job-city').value.trim();
+                    var salary = document.getElementById('job-salary').value.trim();
+                    var schedule = document.getElementById('job-schedule').value;
+                    var employmentType = document.getElementById('job-employment-type').value;
+                    var sector = document.getElementById('job-sector').value;
+                    var theme = document.getElementById('job-theme').value;
+                    var statusBadge = document.getElementById('job-status-badge').value.trim() || 'Open';
+                    var description = document.getElementById('job-description').value.trim();
+                    var reqRaw = document.getElementById('job-requirements').value.trim();
+                    var requirements = reqRaw.split('\n').map(function(r) { return r.trim(); }).filter(Boolean);
+                    var benRaw = document.getElementById('job-benefits').value.trim();
+                    var benefits = benRaw.split('\n').map(function(b) { return b.trim(); }).filter(Boolean);
+                    console.log('[SKMM Admin] Form values read, title:', title);
+                    var now = new Date();
+                    var dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                    if (editId) {
+                        var idx = jobs.findIndex(function(j) { return j.id === editId; });
+                        if (idx !== -1) {
+                            jobs[idx] = Object.assign({}, jobs[idx], { title: title, company: company, country: country, city: city, salary: salary, schedule: schedule, employmentType: employmentType, sector: sector, theme: theme, statusBadge: statusBadge, description: description, requirements: requirements, benefits: benefits });
+                            console.log('[SKMM Admin] Job updated:', editId);
+                        } else {
+                            console.log('[SKMM Admin] Edit ID not found:', editId);
+                        }
+                    } else {
+                        var newJob = { id: 'job-' + Date.now(), title: title, company: company, country: country, city: city, salary: salary, salaryDetail: salary, schedule: schedule, employmentType: employmentType, sector: sector, theme: theme, statusBadge: statusBadge, date: dateStr, description: description, requirements: requirements, benefits: benefits };
+                        jobs.unshift(newJob);
+                        console.log('[SKMM Admin] New job added:', newJob.id);
+                    }
+                    console.log('[SKMM Admin] Total jobs before save:', jobs.length);
+                    try { window.saveJobs(jobs); } catch(err) { console.log('[SKMM] Supabase save deferred:', err.message); }
+                    console.log('[SKMM Admin] saveJobs called, localStorage updated:', localStorage.getItem('skmm_jobs') ? 'yes' : 'no');
+                    resetJobForm();
+                    renderAdminJobsTable();
+                    console.log('[SKMM Admin] Table rendered, new count:', getJobs().length);
+                    if (!editId) {
+                        showToast('New job "' + title + '" added successfully!');
+                    } else {
+                        showToast('Job "' + title + '" updated successfully!');
+                    }
+                } catch (err) {
+                    console.error('[SKMM Admin] Form submit error:', err);
+                    alert('Error adding job: ' + err.message);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

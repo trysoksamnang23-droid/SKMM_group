@@ -1,0 +1,1392 @@
+/* ==========================================================================
+   SKMM / CamboJob Platform Main Stylesheet
+   Design: Modern SaaS UI (Dark Header, Pastel Cards, Filter Sidebar)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* --- 1. Global Reset & Body Setup --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 2. Dark Header Navigation --- */
+header {
+    background-color: #121824;
+    color: #ffffff;
+    padding: 1rem 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    margin: 1rem 1rem 0 1rem;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+nav a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+nav a:hover, nav a.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- 3. Search & Header Controls Sub-Bar --- */
+.search-header-bar {
+    background-color: #1e293b;
+    padding: 0.75rem 3%;
+    margin: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.search-input-group {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    flex: 1;
+    min-width: 200px;
+    align-items: center;
+}
+
+.search-input-group input, 
+.search-input-group select {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    outline: none;
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+.search-input-group select option {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+/* --- 4. Main Application Layout --- */
+.container {
+    background-color: #f8fafc;
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 24px;
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* --- 5. Sidebar & Filter Styling --- */
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.sidebar-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+}
+
+.sidebar-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.sidebar-card .btn-light {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border-radius: 20px;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.filter-group {
+    margin-bottom: 1.5rem;
+}
+
+.filter-group h4 {
+    font-size: 0.9rem;
+    color: #475569;
+    margin-bottom: 0.75rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #334155;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+    accent-color: #0f172a;
+    width: 16px;
+    height: 16px;
+}
+
+/* --- 6. Main Workspace Content --- */
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.badge-count {
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: #475569;
+}
+
+/* Section Blocks for Structural Pages */
+.section-block {
+    background: #ffffff;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 16px;
+    border-left: 5px solid #0f172a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.section-block h2 {
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.section-block h3 {
+    color: #0284c7;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+}
+
+.section-block p, .section-block ul {
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.section-block ul {
+    padding-left: 1.2rem;
+}
+
+/* --- 7. Modern Pastel Job/Candidate Cards --- */
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.job-card {
+    border-radius: 20px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 240px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Modern Card Color Themes */
+.job-card.peach { background-color: #ffedd5; }
+.job-card.mint { background-color: #d1fae5; }
+.job-card.lavender { background-color: #ede9fe; }
+.job-card.blue { background-color: #e0f2fe; }
+.job-card.pink { background-color: #fce7f3; }
+.job-card.gray { background-color: #f1f5f9; }
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.date-tag {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.company-name {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.job-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+}
+
+/* Pill Tags */
+.tags-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1.25rem;
+}
+
+.pill-tag {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 3px 10px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    color: #334155;
+}
+
+/* Card Footer Elements */
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 0.75rem;
+}
+
+.salary-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.location-text {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+/* --- 8. Action Buttons & Input Forms --- */
+.btn-details, .btn {
+    background-color: #0f172a;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+.btn-details:hover, .btn:hover {
+    background-color: #1e293b;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #0284c7;
+}
+
+/* Grid Layout Utilities */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+/* --- 9. Dark Footer Bar --- */
+footer {
+    background-color: #121824;
+    color: #94a3b8;
+    text-align: center;
+    padding: 1.5rem;
+    margin: 0 1rem 1rem 1rem;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+footer a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- 10. Mobile Navigation & Responsive Enhancements --- */
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px;
+}
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 1rem;
+        gap: 8px;
+    }
+
+    nav.nav-open {
+        display: flex;
+    }
+
+    header {
+        flex-wrap: wrap;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 1.25rem;
+        margin: 0.75rem;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .search-header-bar {
+        margin: 0 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+
+    header, footer {
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+    }
+}
+
+/* --- 11. Impact Stats Bar --- */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    background: #ffffff;
+    padding: 1.25rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    border-right: 1px solid #f1f5f9;
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0284c7;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* --- 12. Interactive Tab Controls --- */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    background: #e2e8f0;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background: #cbd5e1;
+    color: #0f172a;
+}
+
+.tab-btn.active {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+/* --- 13. Candidate Cards Styling --- */
+.candidate-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.candidate-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.candidate-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.candidate-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0284c7, #38bdf8);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-available { background: #dcfce7; color: #15803d; }
+.status-interviewing { background: #fef3c7; color: #b45309; }
+.status-selected { background: #e0e7ff; color: #4338ca; }
+
+.candidate-specs {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+.candidate-specs li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed #f1f5f9;
+}
+
+.candidate-specs li strong {
+    color: #1e293b;
+}
+
+/* --- 14. Modern Table Styles --- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.data-table th, .data-table td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.data-table th {
+    background-color: #0f172a;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table tr:hover {
+    background-color: #f8fafc;
+}
+
+/* --- 15. Process & Timeline Component --- */
+.process-timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 1.5rem 0;
+}
+
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    width: 3px;
+    background: #e2e8f0;
+}
+
+.process-step-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.process-step-item:last-child {
+    margin-bottom: 0;
+}
+
+.step-marker {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #0284c7;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 0 0 0 4px #e0f2fe;
+}
+
+.step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.35rem;
+}
+
+.step-desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* --- 16. Modal Dialog Component --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    padding: 1rem;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: #ffffff;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transform: scale(0.95);
+    transition: transform 0.25s ease;
+    position: relative;
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #475569;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.modal-close-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* --- 17. Toast Notifications --- */
+#toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;
+    animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-left: 4px solid #10b981;
+}
+
+.toast.toast-error {
+    border-left-color: #ef4444;
+}
+
+.toast.toast-info {
+    border-left-color: #38bdf8;
+}
+
+.toast.toast-warning {
+    border-left-color: #f59e09;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 18. Secondary Elements & Helpers --- */
+.text-muted { color: #64748b; font-size: 0.85rem; }
+.text-primary { color: #0284c7; }
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid #0f172a;
+    color: #0f172a;
+    padding: 0.5rem 1.2rem;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-outline:hover {
+    background: #0f172a;
+    color: #ffffff;
+}
+.btn-success {
+    background-color: #10b981;
+    color: #ffffff;
+}
+.btn-success:hover {
+    background-color: #059669;
+}
+.tag-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.card-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: #0284c7;
+}
+.org-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+.org-card h4 {
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+.org-card p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0;
+}
+.notice-box {
+    background: #eff6ff;
+    border-left: 4px solid #0284c7;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-size: 0.875rem;
+    color: #1e40af;
+}
+
+/* ==========================================================================
+   19. Hero Slideshow Component (Modern Cambojob Style)
+   ========================================================================== */
+.hero-slider-container {
+    position: relative;
+    margin: 1rem 1rem 0 1rem;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0fdfa 0%, #ecfdf5 45%, #ffffff 100%);
+    border: 1.5px solid #ccfbf1;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.hero-slider-wrapper {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
+}
+
+.hero-slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3.5rem 4rem;
+    box-sizing: border-box;
+    position: relative;
+    gap: 2rem;
+}
+
+/* Decorative Background Accents */
+.hero-bg-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 90% 20%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 10% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-dot-matrix {
+    position: absolute;
+    top: 1.75rem;
+    left: 2rem;
+    width: 90px;
+    height: 60px;
+    background-image: radial-gradient(#14b8a6 25%, transparent 25%);
+    background-size: 16px 16px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    flex: 1.15;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.hero-tag-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(13, 148, 136, 0.1);
+    color: #0d9488;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+}
+
+.hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #0f766e;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+}
+
+/* Stylized Highlight Text matching reference ("WITH US >>>") */
+.hero-title-highlight {
+    display: inline-block;
+    color: #f59e0b;
+    text-shadow: 2.5px 2.5px 0px #0f766e, -1.5px -1.5px 0px #0f766e, 1.5px -1.5px 0px #0f766e, -1.5px 1.5px 0px #0f766e;
+    margin-left: 6px;
+    letter-spacing: 0.5px;
+}
+
+.hero-title-chevrons {
+    color: #14b8a6;
+    text-shadow: none;
+    font-weight: 900;
+    margin-left: 4px;
+    letter-spacing: -2px;
+}
+
+.hero-description {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Modern Search Box */
+.hero-search-bar {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 40px;
+    padding: 6px 8px 6px 18px;
+    box-shadow: 0 10px 25px rgba(13, 148, 136, 0.08);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 1rem;
+}
+
+.hero-search-bar:focus-within {
+    border-color: #10b981;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+}
+
+.hero-search-icon {
+    font-size: 1.15rem;
+    color: #64748b;
+    margin-right: 12px;
+}
+
+.hero-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    color: #0f172a;
+    background: transparent;
+}
+
+.hero-search-input::placeholder {
+    color: #94a3b8;
+}
+
+.hero-search-btn {
+    background: #10b981;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.hero-search-btn:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+/* Popular Pills */
+.hero-popular {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.825rem;
+}
+
+.hero-popular-label {
+    color: #475569;
+    font-weight: 600;
+}
+
+.hero-popular-tag {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 3px 10px;
+    color: #475569;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.hero-popular-tag:hover {
+    background: #0d9488;
+    color: #ffffff;
+    border-color: #0d9488;
+}
+
+/* --- Right Side: 3 Phone Mockups Showcase --- */
+.hero-mockup-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.phones-cluster {
+    position: relative;
+    width: 440px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Left Phone (Job List App) */
+.phone-mockup.phone-left {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    width: 175px;
+    height: 310px;
+    background: #ffffff;
+    border: 6px solid #1e293b;
+    border-radius: 26px;
+    box-shadow: -12px 18px 30px rgba(0,0,0,0.1);
+    transform: rotate(-6deg) scale(0.94);
+    z-index: 1;
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Center Phone (Video Call Interview) */
+.phone-mockup.phone-center {
+    position: absolute;
+    left: 120px;
+    top: -5px;
+    width: 200px;
+    height: 345px;
+    background: #090d16;
+    border: 7px solid #0f172a;
+    border-radius: 30px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+    z-index: 3;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Right Phone (Resume / Language CV Settings) */
+.phone-mockup.phone-right {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    width: 175px;
+    height: 310px;
+    background: #ffffff;
+    border: 6px solid #1e293b;
+    border-radius: 26px;
+    box-shadow: 12px 18px 30px rgba(0,0,0,0.1);
+    transform: rotate(6deg) scale(0.94);
+    z-index: 1;
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Phone Screen Internal Styling */
+.phone-notch {
+    width: 50px;
+    height: 12px;
+    background: #0f172a;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin: 0 auto 6px auto;
+}
+
+/* Center Video Call Screen Details */
+.video-pip-window {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    width: 52px;
+    height: 65px;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+    background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 4;
+}
+
+.video-pip-label {
+    font-size: 0.5rem;
+    color: #ffffff;
+    background: rgba(0,0,0,0.6);
+    padding: 1px 4px;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+.video-main-candidate {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0.5rem 0 0.5rem;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+}
+
+.candidate-video-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: 3px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.candidate-video-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.candidate-video-sub {
+    font-size: 0.65rem;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.video-call-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.call-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #ffffff;
+}
+
+.call-btn.cam { background: #334155; }
+.call-btn.mic { background: #334155; }
+.call-btn.end { background: #ef4444; }
+
+/* Left & Right mini phone cards */
+.app-mini-header {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #0f766e;
+    margin-bottom: 6px;
+}
+
+.app-mini-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 6px;
+    margin-bottom: 6px;
+}
+
+.app-mini-card strong {
+    display: block;
+    color: #0f172a;
+    font-size: 0.7rem;
+}
+
+.app-mini-card span {
+    font-size: 0.65rem;
+    color: #10b981;
+    font-weight: 700;
+}
+
+/* Slider Controls: Arrows & Dots */
+.slider-arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.slider-arrow-btn:hover {
+    background: #0f766e;
+    color: #ffffff;
+    border-color: #0f766e;
+}
+
+.slider-arrow-btn.prev { left: 1rem; }
+.slider-arrow-btn.next { right: 1rem; }
+
+.slider-dots-container {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.slider-dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background: #0f766e;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 980px) {
+    .hero-slide {
+        flex-direction: column;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-popular {
+        justify-content: center;
+    }
+
+    .hero-mockup-wrapper {
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+
+    .phones-cluster {
+        width: 100%;
+        max-width: 360px;
+        height: 300px;
+    }
+
+    .phone-mockup.phone-left {
+        left: 0;
+        width: 135px;
+        height: 250px;
+    }
+
+    .phone-mockup.phone-center {
+        left: 85px;
+        width: 165px;
+        height: 285px;
+    }
+
+    .phone-mockup.phone-right {
+        right: 0;
+        width: 135px;
+        height: 250px;
+    }
+
+    .slider-arrow-btn {
+        display: none;
+    }
+}
+

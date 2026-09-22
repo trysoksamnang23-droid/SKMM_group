@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8. News & Activities — SKMM INVESTMENT GROUP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <span>🇰🇭 🇯🇵</span> SKMM GROUP
+        </a>
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <nav>
+            <a href="index.html">1. Home</a>
+            <a href="about.html">2. About Us</a>
+            <a href="services.html">3. Our Services</a>
+            <a href="japanese-partner.html">4. For Japanese Partners</a>
+            <a href="candidates.html">5. Candidates</a>
+            <a href="job.html">6. Job Opportunities</a>
+            <a href="hanabi.html">7. HANABI Center</a>
+            <a href="news.html" class="active">8. News & Activities</a>
+            <a href="contact.html">9. Contact Us</a>
+            <a href="legal.html">10. Legal</a>
+        </nav>
+    </header>
+
+    <div class="container" style="flex-direction: column;">
+        
+        <!-- News Header & Category Filter Tabs -->
+        <section class="section-block">
+            <h2>News & Activities — ព័ត៌មាន និងសកម្មភាពថ្មីៗ</h2>
+            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">
+                Stay updated with the latest departures to Japan, employer interview results, institutional MOUs, and campus events.
+            </p>
+            
+            <!-- Category Tabs -->
+            <div class="tabs">
+                <button class="tab-btn news-tab-btn active" data-category="all">All News (ទាំងអស់)</button>
+                <button class="tab-btn news-tab-btn" data-category="departures">Departures to Japan (ការចេញដំណើរ)</button>
+                <button class="tab-btn news-tab-btn" data-category="interviews">Interview Results (លទ្ធផលសម្ភាសន៍)</button>
+                <button class="tab-btn news-tab-btn" data-category="partnership">MOU & Partnerships (កិច្ចព្រមព្រៀង)</button>
+                <button class="tab-btn news-tab-btn" data-category="campus">HANABI Campus Life (សកម្មភាពសិស្ស)</button>
+            </div>
+        </section>
+
+        <!-- News Articles Grid -->
+        <div class="grid-2" id="news-grid">
+            
+            <!-- Article 1 -->
+            <article class="section-block news-card-item" data-category="departures">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span class="pill-tag" style="background: #e0f2fe; color: #0284c7; font-weight: 700;">Departures</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">12 Sep, 2026</span>
+                </div>
+                <h3 style="font-size: 1.15rem; color: #0f172a; margin-top: 0; line-height: 1.4;">
+                    Batch 18 Departs for Kansai International Airport — ពិធីជូនដំណើរកម្មសិក្សាការីជំនាន់ទី១៨
+                </h3>
+                <p style="color: #475569; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">
+                    SKMM Group and the Ministry of Labour successfully hosted the pre-departure sendoff ceremony for 24 Cambodian technical interns and SSW workers heading to Osaka and Kyoto medical facilities.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-muted">By Editorial Staff • 3 min read</span>
+                    <button onclick="readNewsArticle('news-1')" class="btn-outline">Read Full Story</button>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="section-block news-card-item" data-category="partnership">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span class="pill-tag" style="background: #dcfce7; color: #15803d; font-weight: 700;">Partnership</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">28 Aug, 2026</span>
+                </div>
+                <h3 style="font-size: 1.15rem; color: #0f172a; margin-top: 0; line-height: 1.4;">
+                    Landmark MOU Signed with Tokyo Healthcare Alliance — ការចុះកិច្ចព្រមព្រៀងសហប្រតិបត្តិការ
+                </h3>
+                <p style="color: #475569; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">
+                    Strategic memorandum signed in Tokyo to train and deploy up to 100 Cambodian Certified Caregivers annually under the Specified Skilled Worker (SSW 1) program with full Japanese scholarships.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-muted">By PR Division • 2 min read</span>
+                    <button onclick="readNewsArticle('news-2')" class="btn-outline">Read Full Story</button>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="section-block news-card-item" data-category="campus">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span class="pill-tag" style="background: #ede9fe; color: #6d28d9; font-weight: 700;">Campus Life</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">10 Aug, 2026</span>
+                </div>
+                <h3 style="font-size: 1.15rem; color: #0f172a; margin-top: 0; line-height: 1.4;">
+                    HANABI Center Students Achieve 94% Pass Rate in JLPT July 2026 — លទ្ធផលប្រឡងភាសាជប៉ុន
+                </h3>
+                <p style="color: #475569; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">
+                    Official results released for July JLPT test: HANABI students set a record 94% pass rate across N5, N4, and N3 levels, with 18 candidates earning N3 diplomas in just 8 months.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-muted">By Academic Dean • 2 min read</span>
+                    <button onclick="readNewsArticle('news-3')" class="btn-outline">Read Full Story</button>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="section-block news-card-item" data-category="interviews">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span class="pill-tag" style="background: #fef3c7; color: #b45309; font-weight: 700;">Interviews</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">24 Jul, 2026</span>
+                </div>
+                <h3 style="font-size: 1.15rem; color: #0f172a; margin-top: 0; line-height: 1.4;">
+                    Joint Interview Session with Ibaraki Agricultural Cooperative — សម្ភាសន៍ផ្ទាល់ជាមួយក្រុមហ៊ុនជប៉ុន
+                </h3>
+                <p style="color: #475569; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">
+                    Japanese employer delegation conducted two days of in-person technical interviews and tractor dexterity evaluations at SKMM campus, selecting 28 skilled agricultural candidates.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-muted">By Recruitment Team • 3 min read</span>
+                    <button onclick="readNewsArticle('news-4')" class="btn-outline">Read Full Story</button>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="section-block news-card-item" data-category="campus">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span class="pill-tag" style="background: #ede9fe; color: #6d28d9; font-weight: 700;">Campus Life</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">15 Jul, 2026</span>
+                </div>
+                <h3 style="font-size: 1.15rem; color: #0f172a; margin-top: 0; line-height: 1.4;">
+                    Annual Japanese Cultural Matsuri & Speech Contest 2026 — ទិវាវប្បធម៌ជប៉ុន និងការប្រកួតសុន្ទរកថា
+                </h3>
+                <p style="color: #475569; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">
+                    Over 250 trainees and guests joined the lively summer Tanabata festival featuring traditional Yukata dress, Japanese Taiko drumming, and inspiring Japanese speech competitions.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-muted">By Student Council • 2 min read</span>
+                    <button onclick="showToast('Matsuri 2026 gallery photos available at HANABI campus administrative office.', 'info')" class="btn-outline">Read Full Story</button>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="section-block news-card-item" data-category="partnership">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                    <span class="pill-tag" style="background: #dcfce7; color: #15803d; font-weight: 700;">Partnership</span>
+                    <span style="font-size: 0.8rem; color: #64748b;">02 Jun, 2026</span>
+                </div>
+                <h3 style="font-size: 1.15rem; color: #0f172a; margin-top: 0; line-height: 1.4;">
+                    MoLVT Inspection Team Commends SKMM Campus Compliance — គណៈប្រតិភូក្រសួងការងារចុះត្រួតពិនិត្យ
+                </h3>
+                <p style="color: #475569; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem;">
+                    Senior officials from the Department of Employment and Manpower praised SKMM's strict adherence to ethical recruitment, dormitory sanitation, and high safety standards.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="text-muted">By Legal Affairs • 2 min read</span>
+                    <button onclick="showToast('Inspection report confirmed 100% compliance with Sub-decree 190 on Private Recruitment Agencies.', 'info')" class="btn-outline">Read Full Story</button>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Events Section -->
+        <section class="section-block">
+            <h2>Upcoming Events Calendar — កាលវិភាគព្រឹត្តិការណ៍បន្ទាប់</h2>
+            <div class="grid-3">
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem;">
+                    <span class="status-badge status-available">25 October 2026</span>
+                    <h3 style="font-size: 1.05rem; color: #0f172a; margin-top: 0.5rem;">Japan Job Fair 2026</h3>
+                    <p class="text-muted">Direct interviews with 15 Japanese agricultural and food processing corporations at SKMM campus.</p>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem;">
+                    <span class="status-badge status-interviewing">10 November 2026</span>
+                    <h3 style="font-size: 1.05rem; color: #0f172a; margin-top: 0.5rem;">Caregiver Prometric Test Prep</h3>
+                    <p class="text-muted">Mock examination weekend for all SSW Nursing Care applicants targeting December test dates.</p>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem;">
+                    <span class="status-badge status-selected">06 December 2026</span>
+                    <h3 style="font-size: 1.05rem; color: #0f172a; margin-top: 0.5rem;">JLPT Winter Exam 2026</h3>
+                    <p class="text-muted">Official JLPT examination day for all N5, N4, N3 candidates at Royal University of Phnom Penh.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SKMM INVESTMENT GROUP CO., LTD. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 4px;">
+            Licensed Private Recruitment Agency No. 048/19 MLVT • Phnom Penh, Cambodia
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="supabase-js.js"></script>
+    <script src="supabase-config.js"></script>
+    <script src="supabase-setup.js"></script>
+</body>
+</html>

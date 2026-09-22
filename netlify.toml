@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+
+[[ignore]]
+  pattern = "node_modules/**"
+
+[[ignore]]
+  pattern = "package*.json"
